@@ -7,3 +7,6 @@ ENV HOME=/home/rust \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal -c clippy rustfmt
 
 WORKDIR /home/rust/src
+
+LABEL org.opencontainers.image.source https://github.com/OutOfOrder/containers/rust-builder
+LABEL org.opencontainers.image.description "Image for building rust applications based on Rocky Linux 8"

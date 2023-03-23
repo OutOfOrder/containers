@@ -40,3 +40,6 @@ EXPOSE 25 143 465 993 4190
 HEALTHCHECK --interval=5s --retries=10 CMD netstat -ltn | grep -c :143 || exit 1
 
 CMD /usr/local/sbin/entrypoint.sh
+
+LABEL org.opencontainers.image.source https://github.com/OutOfOrder/containers/cyrus-imapd-tester
+LABEL org.opencontainers.image.description "Spins up a cyrus-imapd and postfix server in a container for use with integration testing."
