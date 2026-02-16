@@ -1,8 +1,16 @@
 FROM rockylinux:8-minimal
 
-RUN microdnf -y install libpq-devel gcc && microdnf clean all
+RUN microdnf -y install libpq-devel gcc tar gzip && microdnf clean all
 ENV HOME=/home/rust \
     PATH=/home/rust/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+ENV SCCACHE_VERSION=v0.14.0
+
+RUN curl -L "https://github.com/mozilla/sccache/releases/download/${SCCACHE_VERSION}/sccache-${SCCACHE_VERSION}-$(uname -m)-unknown-linux-musl.tar.gz" -o sccache.tar.gz \
+    && tar xzpvf sccache.tar.gz \
+    && cp "sccache-${SCCACHE_VERSION}-$(uname -m)-unknown-linux-musl/sccache" /usr/local/bin \
+    && chmod +x /usr/local/bin/sccache \
+    && rm -rf sccache.tar.gz sccache-${SCCACHE_VERSION}-$(uname -m)-unknown-linux-musl
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal -c clippy,rustfmt
 
