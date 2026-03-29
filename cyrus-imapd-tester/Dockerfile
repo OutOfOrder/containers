@@ -13,6 +13,7 @@ RUN sed -ri \
     && sed -ri \
     -e 's!^  pop3!#  pop3!g' \
     -e 's!^  http!#  http!g' \
+    -e 's!^#  idled!  idled!g' \
     /etc/cyrus.conf
 
 RUN postconf \
