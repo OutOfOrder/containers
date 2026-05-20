@@ -1,4 +1,4 @@
-FROM rockylinux:8-minimal
+FROM rockylinux/rockylinux:8-minimal
 
 RUN microdnf install -y sscg postfix cyrus-sasl-plain net-tools \
     && microdnf clean all \

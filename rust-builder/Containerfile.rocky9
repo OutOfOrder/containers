@@ -1,4 +1,4 @@
-FROM rockylinux:9-minimal
+FROM rockylinux/rockylinux:9-minimal
 
 RUN microdnf -y install libpq-devel gcc tar && microdnf clean all
 ENV HOME=/home/rust \
